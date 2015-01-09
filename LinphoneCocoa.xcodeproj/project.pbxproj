@@ -1,0 +1,371 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		26601B871A60A0030033BD13 /* libLinphoneCocoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26601B7B1A60A0030033BD13 /* libLinphoneCocoa.a */; };
+		26601B981A60A12D0033BD13 /* LinphoneCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 26601B971A60A12D0033BD13 /* LinphoneCore.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		26601B881A60A0030033BD13 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 26601B731A60A0030033BD13 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26601B7A1A60A0030033BD13;
+			remoteInfo = LinphoneCocoa;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		26601B791A60A0030033BD13 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		26601B7B1A60A0030033BD13 /* libLinphoneCocoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLinphoneCocoa.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		26601B861A60A0030033BD13 /* LinphoneCocoaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinphoneCocoaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		26601B8C1A60A0030033BD13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26601B961A60A12D0033BD13 /* LinphoneCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinphoneCore.h; sourceTree = "<group>"; };
+		26601B971A60A12D0033BD13 /* LinphoneCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinphoneCore.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		26601B781A60A0030033BD13 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26601B831A60A0030033BD13 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26601B871A60A0030033BD13 /* libLinphoneCocoa.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		26601B721A60A0030033BD13 = {
+			isa = PBXGroup;
+			children = (
+				26601B951A60A10D0033BD13 /* Classes */,
+				26601B8A1A60A0030033BD13 /* LinphoneCocoaTests */,
+				26601B7C1A60A0030033BD13 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		26601B7C1A60A0030033BD13 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				26601B7B1A60A0030033BD13 /* libLinphoneCocoa.a */,
+				26601B861A60A0030033BD13 /* LinphoneCocoaTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		26601B8A1A60A0030033BD13 /* LinphoneCocoaTests */ = {
+			isa = PBXGroup;
+			children = (
+				26601B8B1A60A0030033BD13 /* Supporting Files */,
+			);
+			path = LinphoneCocoaTests;
+			sourceTree = "<group>";
+		};
+		26601B8B1A60A0030033BD13 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				26601B8C1A60A0030033BD13 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		26601B951A60A10D0033BD13 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				26601B961A60A12D0033BD13 /* LinphoneCore.h */,
+				26601B971A60A12D0033BD13 /* LinphoneCore.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		26601B7A1A60A0030033BD13 /* LinphoneCocoa */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26601B8F1A60A0030033BD13 /* Build configuration list for PBXNativeTarget "LinphoneCocoa" */;
+			buildPhases = (
+				26601B771A60A0030033BD13 /* Sources */,
+				26601B781A60A0030033BD13 /* Frameworks */,
+				26601B791A60A0030033BD13 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LinphoneCocoa;
+			productName = LinphoneCocoa;
+			productReference = 26601B7B1A60A0030033BD13 /* libLinphoneCocoa.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		26601B851A60A0030033BD13 /* LinphoneCocoaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26601B921A60A0030033BD13 /* Build configuration list for PBXNativeTarget "LinphoneCocoaTests" */;
+			buildPhases = (
+				26601B821A60A0030033BD13 /* Sources */,
+				26601B831A60A0030033BD13 /* Frameworks */,
+				26601B841A60A0030033BD13 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				26601B891A60A0030033BD13 /* PBXTargetDependency */,
+			);
+			name = LinphoneCocoaTests;
+			productName = LinphoneCocoaTests;
+			productReference = 26601B861A60A0030033BD13 /* LinphoneCocoaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		26601B731A60A0030033BD13 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Akademon Ltd.";
+				TargetAttributes = {
+					26601B7A1A60A0030033BD13 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					26601B851A60A0030033BD13 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 26601B761A60A0030033BD13 /* Build configuration list for PBXProject "LinphoneCocoa" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 26601B721A60A0030033BD13;
+			productRefGroup = 26601B7C1A60A0030033BD13 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				26601B7A1A60A0030033BD13 /* LinphoneCocoa */,
+				26601B851A60A0030033BD13 /* LinphoneCocoaTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		26601B841A60A0030033BD13 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		26601B771A60A0030033BD13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26601B981A60A12D0033BD13 /* LinphoneCore.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26601B821A60A0030033BD13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		26601B891A60A0030033BD13 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 26601B7A1A60A0030033BD13 /* LinphoneCocoa */;
+			targetProxy = 26601B881A60A0030033BD13 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		26601B8D1A60A0030033BD13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		26601B8E1A60A0030033BD13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		26601B901A60A0030033BD13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		26601B911A60A0030033BD13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		26601B931A60A0030033BD13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LinphoneCocoaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		26601B941A60A0030033BD13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LinphoneCocoaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		26601B761A60A0030033BD13 /* Build configuration list for PBXProject "LinphoneCocoa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26601B8D1A60A0030033BD13 /* Debug */,
+				26601B8E1A60A0030033BD13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		26601B8F1A60A0030033BD13 /* Build configuration list for PBXNativeTarget "LinphoneCocoa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26601B901A60A0030033BD13 /* Debug */,
+				26601B911A60A0030033BD13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		26601B921A60A0030033BD13 /* Build configuration list for PBXNativeTarget "LinphoneCocoaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26601B931A60A0030033BD13 /* Debug */,
+				26601B941A60A0030033BD13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 26601B731A60A0030033BD13 /* Project object */;
+}
