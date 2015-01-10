@@ -142,6 +142,7 @@
 		26601B731A60A0030033BD13 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = AKD;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Akademon Ltd.";
 				TargetAttributes = {
