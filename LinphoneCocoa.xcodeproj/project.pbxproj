@@ -37,6 +37,7 @@
 /* Begin PBXFileReference section */
 		261BF81C1A616465000CBD26 /* AKDLinphoneCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKDLinphoneCore.h; sourceTree = "<group>"; };
 		261BF81D1A616465000CBD26 /* AKDLinphoneCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKDLinphoneCore.m; sourceTree = "<group>"; };
+		261BF81F1A61666C000CBD26 /* LinphoneCocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LinphoneCocoa.h; sourceTree = "<group>"; };
 		261BF8201A61DBAE000CBD26 /* AKDLinphoneLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKDLinphoneLogger.h; sourceTree = "<group>"; };
 		261BF8211A61DBAE000CBD26 /* AKDLinphoneLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKDLinphoneLogger.m; sourceTree = "<group>"; };
 		26601B7B1A60A0030033BD13 /* libLinphoneCocoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLinphoneCocoa.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +101,7 @@
 		26601B951A60A10D0033BD13 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				261BF81F1A61666C000CBD26 /* LinphoneCocoa.h */,
 				261BF81C1A616465000CBD26 /* AKDLinphoneCore.h */,
 				261BF81D1A616465000CBD26 /* AKDLinphoneCore.m */,
 				261BF8201A61DBAE000CBD26 /* AKDLinphoneLogger.h */,
