@@ -154,35 +154,7 @@ static const char *timerSerialQueueName = "ru.akademon.linphonecocoa.iterateSeri
 #pragma mark - callbacks
 
 static void registration_state_changed(struct _LinphoneCore *lc, LinphoneProxyConfig *cfg, LinphoneRegistrationState cstate, const char *message) {
-    NSMutableArray *operationsQueueArray = nil;
-
-    switch (cstate) {
-        case LinphoneRegistrationNone:
-            [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Initial state for registrations"];
-            break;
-        case LinphoneRegistrationProgress:
-            [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Registration is in progress"];
-            break;
-        case LinphoneRegistrationOk:
-            [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Registration is successful"];
-            break;
-        case LinphoneRegistrationCleared:
-            [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Unregistration succeeded"];
-            operationsQueueArray = [[AKDLinphoneCore sharedInstance] registrationClearedBlocksQueue];
-            break;
-        case LinphoneRegistrationFailed:
-            [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Registration failed"];
-            break;
-        default:
-            [AKDLinphoneLogger log:LCLogLevelError formatString:@"Unknown registration state received"];
-            break;
-    }
-    
-    for (NSOperation *operation in operationsQueueArray) {
-        [operation start];
-    }
-    
-    [operationsQueueArray removeAllObjects];
+    [[AKDLinphoneCore sharedInstance] registrationStateChanged:cstate forLinphoneCore:lc proxyConfig:cfg message:message];
 }
 
 #pragma mark - private properites
@@ -214,6 +186,43 @@ static void registration_state_changed(struct _LinphoneCore *lc, LinphoneProxyCo
     if (_iterateTimer) {
         dispatch_source_cancel(_iterateTimer);
         _iterateTimer = nil;
+    }
+}
+
+- (void)registrationStateChanged:(LinphoneRegistrationState)cstate forLinphoneCore:(struct _LinphoneCore *)lc proxyConfig:(LinphoneProxyConfig *)proxy_cfg message:(const char *)message {
+    ASSERT_CORRECT_THREAD;
+
+    NSMutableArray *operationsQueueArray = nil;
+    
+    switch (cstate) {
+        case LinphoneRegistrationNone:
+            [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Initial state for registrations"];
+            break;
+        case LinphoneRegistrationProgress:
+            [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Registration is in progress"];
+            break;
+        case LinphoneRegistrationOk:
+            [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Registration is successful"];
+            break;
+        case LinphoneRegistrationCleared:
+            [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Unregistration succeeded"];
+            operationsQueueArray = self.registrationClearedBlocksQueue;
+            break;
+        case LinphoneRegistrationFailed:
+            [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Registration failed"];
+            break;
+        default:
+            [AKDLinphoneLogger log:LCLogLevelError formatString:@"Unknown registration state received"];
+            break;
+    }
+    
+    [[AKDLinphoneCore sharedInstance] performDelayedOperationsForQueue:operationsQueueArray];
+    [operationsQueueArray removeAllObjects];
+}
+
+- (void)performDelayedOperationsForQueue:(NSArray *)operationsQueueArray {
+    for (NSOperation *operation in operationsQueueArray) {
+        [operation start];
     }
 }
 
