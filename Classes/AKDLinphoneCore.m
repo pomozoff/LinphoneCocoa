@@ -79,8 +79,9 @@ static const char *timerSerialQueueName = "ru.akademon.linphonecocoa.iterateSeri
         self.identity = identity;
         self.password = password;
         
-        LinphoneCoreVTable vtable = {0};
-        vtable.registration_state_changed = registration_state_changed;
+        LinphoneCoreVTable vtable = {
+            .registration_state_changed = registration_state_changed
+        };
         
         LinphoneProxyConfig *proxy_cfg;
         LinphoneAddress *from;
