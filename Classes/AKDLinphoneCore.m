@@ -93,6 +93,11 @@ static const char *timerSerialQueueName = "ru.akademon.linphonecocoa.iterateSeri
 }
 - (void)stop {
     dispatch_async(_serilaLinphoneQueue, ^(void) {
+        if (!_lc) {
+            [AKDLinphoneLogger log:LCLogLevelError formatString:@"Linphone core is absent, exiting"];
+            return;
+        }
+        
         [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Disabling registration on proxy"];
         LinphoneProxyConfig *proxy_cfg;
         
