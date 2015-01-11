@@ -9,6 +9,8 @@
 #import "AKDLinphoneCore.h"
 #import "linphonecore.h"
 
+#define ASSERT_CORRECT_THREAD NSAssert(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL) == timerSerialQueueName, @"Should be run in serial queue named %s", timerSerialQueueName)
+
 #pragma mark - constants
 
 static const NSTimeInterval linphoneCoreIterateInterval = 0.02f;
@@ -198,6 +200,8 @@ static void registration_state_changed(struct _LinphoneCore *lc, LinphoneProxyCo
 }
 
 - (void)startTimer {
+    ASSERT_CORRECT_THREAD;
+
     if (!_iterateTimer) {
         _iterateTimer = [self timerWithInterval:linphoneCoreIterateInterval inQueue:_serilaLinphoneQueue executesBlock:^(void) {
             linphone_core_iterate(_lc);
@@ -205,6 +209,8 @@ static void registration_state_changed(struct _LinphoneCore *lc, LinphoneProxyCo
     }
 }
 - (void)stopTimer {
+    ASSERT_CORRECT_THREAD;
+
     if (_iterateTimer) {
         dispatch_source_cancel(_iterateTimer);
         _iterateTimer = nil;
