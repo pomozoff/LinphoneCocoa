@@ -34,7 +34,7 @@ static const char *timerSerialQueueName = "ru.akademon.linphonecocoa.iterateSeri
 @implementation AKDLinphoneCore {
     dispatch_source_t _iterateTimer;
     dispatch_queue_t _serilaLinphoneQueue;
-    LinphoneCore *_lc;
+    LinphoneCore *_linphoneCore;
     FILE *_lcLogFile;
 }
 
@@ -68,7 +68,7 @@ static const char *timerSerialQueueName = "ru.akademon.linphonecocoa.iterateSeri
 #endif
     
     dispatch_async(_serilaLinphoneQueue, ^(void) {
-        if (_lc) {
+        if (_linphoneCore) {
             [AKDLinphoneLogger log:LCLogLevelError formatString:@"Linphone core already running, exiting"];
             return;
         }
@@ -82,14 +82,14 @@ static const char *timerSerialQueueName = "ru.akademon.linphonecocoa.iterateSeri
         LinphoneCoreVTable vtable = {
             .registration_state_changed = registration_state_changed
         };
-        _lc = linphone_core_new(&vtable, NULL, NULL, NULL);
+        _linphoneCore = linphone_core_new(&vtable, NULL, NULL, NULL);
         
         LinphoneProxyConfig *proxy_cfg;
         LinphoneAddress *from;
         LinphoneAuthInfo *info;
         
         [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Call iterate once immediately in order to initiate background connections with sip server or remote provisioning grab, if any"];
-        linphone_core_iterate(_lc);
+        linphone_core_iterate(_linphoneCore);
         
         [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Starting core iterate timer"];
         [self startTimer];
@@ -97,7 +97,7 @@ static const char *timerSerialQueueName = "ru.akademon.linphonecocoa.iterateSeri
 }
 - (void)stop {
     dispatch_async(_serilaLinphoneQueue, ^(void) {
-        if (!_lc) {
+        if (!_linphoneCore) {
             [AKDLinphoneLogger log:LCLogLevelError formatString:@"Linphone core is absent, exiting"];
             return;
         }
@@ -105,7 +105,7 @@ static const char *timerSerialQueueName = "ru.akademon.linphonecocoa.iterateSeri
         [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Disabling registration on proxy"];
         LinphoneProxyConfig *proxy_cfg;
         
-        linphone_core_get_default_proxy(_lc, &proxy_cfg);        // get default proxy config
+        linphone_core_get_default_proxy(_linphoneCore, &proxy_cfg);        // get default proxy config
         linphone_proxy_config_edit(proxy_cfg);                   // start editing proxy configuration
         linphone_proxy_config_enable_register(proxy_cfg, FALSE); // de-activate registration for this proxy config
         linphone_proxy_config_done(proxy_cfg);                   // initiate REGISTER with expire = 0
@@ -115,8 +115,8 @@ static const char *timerSerialQueueName = "ru.akademon.linphonecocoa.iterateSeri
             [self stopTimer];
 
             [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Destroying linphone core"];
-            linphone_core_destroy(_lc);
-            _lc = NULL;
+            linphone_core_destroy(_linphoneCore);
+            _linphoneCore = NULL;
         }]];
     });
 }
@@ -178,7 +178,7 @@ static void registration_state_changed(struct _LinphoneCore *lc, LinphoneProxyCo
 
     if (!_iterateTimer) {
         _iterateTimer = [self timerWithInterval:linphoneCoreIterateInterval inQueue:_serilaLinphoneQueue executesBlock:^(void) {
-            linphone_core_iterate(_lc);
+            linphone_core_iterate(_linphoneCore);
         }];
     }
 }
@@ -191,7 +191,7 @@ static void registration_state_changed(struct _LinphoneCore *lc, LinphoneProxyCo
     }
 }
 
-- (void)registrationStateChanged:(LinphoneRegistrationState)cstate forLinphoneCore:(struct _LinphoneCore *)lc proxyConfig:(LinphoneProxyConfig *)proxy_cfg message:(const char *)message {
+- (void)registrationStateChanged:(LinphoneRegistrationState)cstate forLinphoneCore:(struct _LinphoneCore *)linphoneCore proxyConfig:(LinphoneProxyConfig *)proxy_cfg message:(const char *)message {
     ASSERT_CORRECT_THREAD;
 
     NSMutableArray *operationsQueueArray = nil;
