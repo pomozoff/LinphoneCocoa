@@ -8,7 +8,6 @@
 
 @import Foundation;
 
-#import "LinphoneCocoa.h"
 #import "AKDLinphoneLogger.h"
 
 @interface AKDLinphoneCore : NSObject
