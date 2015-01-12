@@ -47,6 +47,7 @@
 		2631665D1A633176006EBC85 /* libxml2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 263166491A632EA9006EBC85 /* libxml2.a */; };
 		2631665F1A63320E006EBC85 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2631665E1A63320E006EBC85 /* libresolv.dylib */; };
 		263166601A6332B8006EBC85 /* libilbc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 263166571A633145006EBC85 /* libilbc.a */; };
+		263485581A62B697007E672A /* AKDLinphoneCoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 263485571A62B697007E672A /* AKDLinphoneCoreTests.m */; };
 		26601B871A60A0030033BD13 /* libLinphoneCocoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26601B7B1A60A0030033BD13 /* libLinphoneCocoa.a */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +111,7 @@
 		263166591A63315B006EBC85 /* libvpx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvpx.a; path = "liblinphone-sdk/apple-darwin/lib/libvpx.a"; sourceTree = "<group>"; };
 		2631665B1A63316A006EBC85 /* libswscale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswscale.a; path = "liblinphone-sdk/apple-darwin/lib/libswscale.a"; sourceTree = "<group>"; };
 		2631665E1A63320E006EBC85 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		263485571A62B697007E672A /* AKDLinphoneCoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKDLinphoneCoreTests.m; sourceTree = "<group>"; };
 		26601B7B1A60A0030033BD13 /* libLinphoneCocoa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLinphoneCocoa.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		26601B861A60A0030033BD13 /* LinphoneCocoaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinphoneCocoaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26601B8C1A60A0030033BD13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				26601B8B1A60A0030033BD13 /* Supporting Files */,
+				263485571A62B697007E672A /* AKDLinphoneCoreTests.m */,
 			);
 			path = LinphoneCocoaTests;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				263485581A62B697007E672A /* AKDLinphoneCoreTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
