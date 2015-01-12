@@ -10,6 +10,13 @@
 
 #import "AKDLinphoneLogger.h"
 
+typedef NS_ENUM(NSInteger, LCErrorCode) {
+    LCErrorCodeNone = 0,
+    LCErrorCodeLinphoneCoreAlreadyStarted,
+    LCErrorCodeThereIsNoLinphoneCore,
+    LCErrorCodeInvalidIdentity
+};
+
 @interface AKDLinphoneCore : NSObject
 
 @property (nonatomic, copy, readonly) NSString *identity;
