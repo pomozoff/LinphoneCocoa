@@ -7,7 +7,8 @@
 //
 
 #import "AKDLinphoneLogger.h"
-#include "linphone/linphonecore.h"
+
+#import "linphone/linphonecore.h"
 
 @implementation AKDLinphoneLogger
 
