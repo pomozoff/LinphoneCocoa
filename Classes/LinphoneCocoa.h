@@ -9,12 +9,6 @@
 #ifndef LinphoneCocoa_LinphoneCocoa_h
 #define LinphoneCocoa_LinphoneCocoa_h
 
-@protocol LinphoneCore <NSObject>
-
-- (instancetype)linphoneCore;
-- (void)start;
-- (void)stop;
-
-@end
+#import "AKDLinphoneCore.h"
 
 #endif
