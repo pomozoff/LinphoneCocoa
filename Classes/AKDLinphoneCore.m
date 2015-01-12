@@ -164,6 +164,8 @@ static const char *timerSerialQueueName = "ru.akademon.linphonecocoa.iterateSeri
             [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Destroying linphone core"];
             linphone_core_destroy(_linphoneCore);
             _linphoneCore = NULL;
+            
+            [self stopLogging];
         }]];
     });
 }
