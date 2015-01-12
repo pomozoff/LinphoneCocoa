@@ -7,14 +7,16 @@
 //
 
 #import "AKDLinphoneCore.h"
-#import "linphonecore.h"
 
-#define ASSERT_CORRECT_THREAD NSAssert(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL) == timerSerialQueueName, @"Should be run in serial queue named %s", timerSerialQueueName)
+#import "linphone/linphonecore.h"
+
+#define ASSERT_CORRECT_THREAD NSAssert(strcmp(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL), timerSerialQueueName) == 0, @"Should be run in serial queue named %s", timerSerialQueueName)
 
 #pragma mark - constants
 
 static const NSTimeInterval linphoneCoreIterateInterval = 0.02f;
 static NSString *mainThreadAssertMessage = @"This should be called from the main thread";
+static NSString *linphoneCoreErrorDomain = @"ru.akademon.linphonecocoa";
 static const char *timerSerialQueueName = "ru.akademon.linphonecocoa.iterateSerialQueue";
 
 #pragma mark - category
@@ -62,32 +64,77 @@ static const char *timerSerialQueueName = "ru.akademon.linphonecocoa.iterateSeri
 
 #pragma mark - public
 
-- (void)startWithIdentity:(NSString *)identity andPassword:(NSString *)password {
+- (void)startWithIdentity:(NSString *)identity andPassword:(NSString *)password completion:(void (^)(NSError *))completion {
 #if DEBUG
-    [self startLoggingToFile:NULL withLevel:LCLogLevelDebug]; // Debug logs to stdout
+    [self startLoggingToFile:NULL withLevel:LCLogLevelDebug | LCLogLevelError | LCLogLevelFatal | LCLogLevelMessage | LCLogLevelTrace | LCLogLevelWarning]; // Debug logs to stdout
 #endif
     
     dispatch_async(_serilaLinphoneQueue, ^(void) {
         if (_linphoneCore) {
-            [AKDLinphoneLogger log:LCLogLevelError formatString:@"Linphone core already running, exiting"];
+            NSString *errorString = @"Can't start linphone core";
+            NSString *reasonString = @"Looks like another linphone core is already running";
+            NSString *suggestionString = @"Do not try start core more times than once, use existing one";
+
+            [AKDLinphoneLogger log:LCLogLevelError formatString:errorString];
+            completion([NSError errorWithDomain:linphoneCoreErrorDomain
+                                           code:LCErrorCodeLinphoneCoreAlreadyStarted
+                                       userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorString, nil),
+                                                  NSLocalizedFailureReasonErrorKey: NSLocalizedString(reasonString, nil),
+                                                  NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(suggestionString, nil)
+                                                  }]);
             return;
         }
-        
-        [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Clearing blocks queues"];
-        [self.registrationClearedBlocksQueue removeAllObjects];
-        
-        self.identity = identity;
-        self.password = password;
         
         LinphoneCoreVTable vtable = {
             .registration_state_changed = registration_state_changed
         };
+
+        [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Create linphone core"];
         _linphoneCore = linphone_core_new(&vtable, NULL, NULL, NULL);
         
-        LinphoneProxyConfig *proxy_cfg;
-        LinphoneAddress *from;
-        LinphoneAuthInfo *info;
+        [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Create proxy config"];
+        LinphoneProxyConfig *proxy_cfg = linphone_proxy_config_new();
         
+        const char *cIdentity = [identity cStringUsingEncoding:NSUTF8StringEncoding];
+        LinphoneAddress *from = linphone_address_new(cIdentity);
+        if (!from) {
+            NSString *errorString = [NSString stringWithFormat:@"Can't parse identity %@", identity];
+            NSString *reasonString = [NSString stringWithFormat:@"%@ is not a valid sip uri", identity];
+            NSString *suggestionString = @"Identity must be like sip:toto@sip.linphone.org";
+            
+            [AKDLinphoneLogger log:LCLogLevelError formatString:errorString];
+            completion([NSError errorWithDomain:linphoneCoreErrorDomain
+                                           code:LCErrorCodeInvalidIdentity
+                                       userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorString, nil),
+                                                  NSLocalizedFailureReasonErrorKey: NSLocalizedString(reasonString, nil),
+                                                  NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(suggestionString, nil)
+                                                  }]);
+            return;
+        }
+        if (password) {
+            // create authentication structure from identity
+            const char *cPassword = [identity cStringUsingEncoding:NSUTF8StringEncoding];
+            LinphoneAuthInfo *info = linphone_auth_info_new(linphone_address_get_username(from), NULL, cPassword, NULL, NULL, NULL);
+            linphone_core_add_auth_info(_linphoneCore, info); // add authentication info to LinphoneCore
+        }
+        
+        self.identity = identity;
+        self.password = password;
+        
+        const char *server_addr = linphone_address_get_domain(from);   // extract domain address from identity
+
+        // configure proxy entries
+        linphone_proxy_config_set_identity(proxy_cfg, cIdentity);      // set identity with user name and domain
+        linphone_proxy_config_set_server_addr(proxy_cfg, server_addr); // we assume domain = proxy server address
+        linphone_proxy_config_enable_register(proxy_cfg, TRUE);        // activate registration for this proxy config
+        linphone_address_destroy(from);                                // release resource
+        
+        linphone_core_add_proxy_config(_linphoneCore, proxy_cfg);      // add proxy config to linphone core
+        linphone_core_set_default_proxy(_linphoneCore, proxy_cfg);     // set to default proxy
+        
+        [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Clearing blocks queues"];
+        [self.registrationClearedBlocksQueue removeAllObjects];
+
         [AKDLinphoneLogger log:LCLogLevelMessage formatString:@"Call iterate once immediately in order to initiate background connections with sip server or remote provisioning grab, if any"];
         linphone_core_iterate(_linphoneCore);
         
@@ -178,6 +225,7 @@ static void registration_state_changed(struct _LinphoneCore *lc, LinphoneProxyCo
 
     if (!_iterateTimer) {
         _iterateTimer = [self timerWithInterval:linphoneCoreIterateInterval inQueue:_serilaLinphoneQueue executesBlock:^(void) {
+            ASSERT_CORRECT_THREAD;
             linphone_core_iterate(_linphoneCore);
         }];
     }

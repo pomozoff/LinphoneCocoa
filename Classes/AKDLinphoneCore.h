@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, LCErrorCode) {
 - (void)startLoggingToFile:(NSString *)logFile withLevel:(LCLogLevel)logLevel;
 - (void)stopLogging;
 
-- (void)startWithIdentity:(NSString *)identity andPassword:(NSString *)password;
+- (void)startWithIdentity:(NSString *)identity andPassword:(NSString *)password completion:(void(^)(NSError *error))completion;
 - (void)stop;
 
 @end
