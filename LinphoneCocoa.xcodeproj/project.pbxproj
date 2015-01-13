@@ -15,22 +15,16 @@
 		261E05411A6466F4003DBD7D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 261E05401A6466F4003DBD7D /* CFNetwork.framework */; };
 		261E05431A646711003DBD7D /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 261E05421A646711003DBD7D /* CoreAudio.framework */; };
 		261E05451A646734003DBD7D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 261E05441A646734003DBD7D /* Foundation.framework */; };
-		263166181A632AE5006EBC85 /* libortp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 263166171A632AE5006EBC85 /* libortp.a */; };
 		263166191A632AE9006EBC85 /* libortp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 263166171A632AE5006EBC85 /* libortp.a */; };
-		2631661B1A632AFC006EBC85 /* liblinphone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2631661A1A632AFC006EBC85 /* liblinphone.a */; };
 		2631661C1A632B04006EBC85 /* liblinphone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2631661A1A632AFC006EBC85 /* liblinphone.a */; };
-		2631661E1A632B1E006EBC85 /* libbellesip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2631661D1A632B1E006EBC85 /* libbellesip.a */; };
 		2631661F1A632B20006EBC85 /* libbellesip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2631661D1A632B1E006EBC85 /* libbellesip.a */; };
-		263166211A632B2F006EBC85 /* libantlr3c.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 263166201A632B2F006EBC85 /* libantlr3c.a */; };
 		263166221A632B31006EBC85 /* libantlr3c.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 263166201A632B2F006EBC85 /* libantlr3c.a */; };
 		263166241A632B58006EBC85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263166231A632B58006EBC85 /* UIKit.framework */; };
-		263166291A632BC1006EBC85 /* libmediastreamer_voip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 263166281A632BC1006EBC85 /* libmediastreamer_voip.a */; };
 		2631662A1A632BCA006EBC85 /* libmediastreamer_voip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 263166281A632BC1006EBC85 /* libmediastreamer_voip.a */; };
 		263166301A632C3A006EBC85 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2631662F1A632C3A006EBC85 /* AudioToolbox.framework */; };
 		263166381A632D9E006EBC85 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263166371A632D9E006EBC85 /* CoreGraphics.framework */; };
 		263166391A632DBA006EBC85 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263166331A632CCA006EBC85 /* QuartzCore.framework */; };
 		2631663B1A632DCF006EBC85 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2631663A1A632DCF006EBC85 /* OpenGLES.framework */; };
-		2631663D1A632DE3006EBC85 /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2631663C1A632DE3006EBC85 /* libavcodec.a */; };
 		2631663E1A632DE4006EBC85 /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2631663C1A632DE3006EBC85 /* libavcodec.a */; };
 		263166401A632DF5006EBC85 /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2631663F1A632DF5006EBC85 /* libavutil.a */; };
 		263166421A632E05006EBC85 /* libbzrtp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 263166411A632E05006EBC85 /* libbzrtp.a */; };
@@ -122,12 +116,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2631661B1A632AFC006EBC85 /* liblinphone.a in Frameworks */,
-				263166291A632BC1006EBC85 /* libmediastreamer_voip.a in Frameworks */,
-				263166211A632B2F006EBC85 /* libantlr3c.a in Frameworks */,
-				263166181A632AE5006EBC85 /* libortp.a in Frameworks */,
-				2631661E1A632B1E006EBC85 /* libbellesip.a in Frameworks */,
-				2631663D1A632DE3006EBC85 /* libavcodec.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
