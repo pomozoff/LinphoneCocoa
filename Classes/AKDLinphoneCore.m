@@ -66,7 +66,7 @@ static const char *timerSerialQueueName = "ru.akademon.linphonecocoa.iterateSeri
 
 - (void)startWithIdentity:(NSString *)identity andPassword:(NSString *)password completion:(void (^)(NSError *))completion {
 #if DEBUG
-    [self startLoggingToFile:NULL withLevel:LCLogLevelDebug | LCLogLevelError | LCLogLevelFatal | LCLogLevelMessage | LCLogLevelTrace | LCLogLevelWarning]; // Debug logs to stdout
+    [self startLoggingToFile:NULL withLevel:LCLogLevelDebug | LCLogLevelError | LCLogLevelFatal | LCLogLevelMessage | LCLogLevelTrace | LCLogLevelWarning]; // Log everything to stdout
 #endif
     
     dispatch_async(_serilaLinphoneQueue, ^(void) {
