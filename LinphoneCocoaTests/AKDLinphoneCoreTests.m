@@ -24,7 +24,7 @@
     [super tearDown];
 }
 
-- (void)testLinphoneCoreStart {
+- (void)testLinphoneCoreStartWithEmptyIdentity {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Server registration"];
 
     [[AKDLinphoneCore sharedInstance] startWithIdentity:nil andPassword:nil completion:^(NSError *error) {
