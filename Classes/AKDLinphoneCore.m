@@ -114,15 +114,6 @@ static const char *timerSerialQueueName = "ru.akademon.linphonecocoa.iterateSeri
                                                   }]);
             return;
         }
-        if (password) {
-            // create authentication structure from identity
-            const char *cPassword = [identity cStringUsingEncoding:NSUTF8StringEncoding];
-            LinphoneAuthInfo *info = linphone_auth_info_new(linphone_address_get_username(from), NULL, cPassword, NULL, NULL, NULL);
-            linphone_core_add_auth_info(_linphoneCore, info); // add authentication info to LinphoneCore
-        }
-        
-        self.identity = identity;
-        self.password = password;
         
         const char *server_addr = linphone_address_get_domain(from);   // extract domain address from identity
         if (!server_addr) {
@@ -143,6 +134,16 @@ static const char *timerSerialQueueName = "ru.akademon.linphonecocoa.iterateSeri
                                                   NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(suggestionString, nil)
                                                   }]);
             return;
+        }
+        
+        self.identity = identity;
+        self.password = password;
+
+        if (password) {
+            // create authentication structure from identity
+            const char *cPassword = [identity cStringUsingEncoding:NSUTF8StringEncoding];
+            LinphoneAuthInfo *info = linphone_auth_info_new(linphone_address_get_username(from), NULL, cPassword, NULL, NULL, NULL);
+            linphone_core_add_auth_info(_linphoneCore, info); // add authentication info to LinphoneCore
         }
 
         // configure proxy entries
