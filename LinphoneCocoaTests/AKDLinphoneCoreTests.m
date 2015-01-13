@@ -28,16 +28,12 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Server registration"];
 
     [[AKDLinphoneCore sharedInstance] startWithIdentity:nil andPassword:nil completion:^(NSError *error) {
-        XCTAssert(error == nil, @"No errors at start");
-        [expectation fulfill];
+        XCTAssert(error != nil, @"Should be error on start linphone server with empty identity");
+        if (error) {
+            [expectation fulfill];
+        }
     }];
-    [self waitForExpectationsWithTimeout:5
-                                 handler:^(NSError *error) {
-                                     // handler is called on _either_ success or failure
-                                     if (error != nil) {
-                                         XCTFail(@"timeout error: %@", error);
-                                     }
-                                 }];
+    [self waitForExpectationsWithTimeout:1 handler:nil];
 }
 
 - (void)testPerformanceExample {
