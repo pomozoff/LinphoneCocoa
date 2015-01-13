@@ -12,18 +12,12 @@
 
 @interface AKDLinphoneCoreTests : XCTestCase
 
-@property (nonatomic, copy) NSString *identity;
-@property (nonatomic, copy) NSString *password;
-
 @end
 
 @implementation AKDLinphoneCoreTests
 
 - (void)setUp {
     [super setUp];
-    
-    self.identity = nil;
-    self.password = nil;
 }
 
 - (void)tearDown {
