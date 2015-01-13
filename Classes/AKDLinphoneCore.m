@@ -98,6 +98,9 @@ static const char *timerSerialQueueName = "ru.akademon.linphonecocoa.iterateSeri
         const char *cIdentity = [identity cStringUsingEncoding:NSUTF8StringEncoding];
         LinphoneAddress *from = linphone_address_new(cIdentity);
         if (!from) {
+            linphone_core_destroy(_linphoneCore);
+            _linphoneCore = NULL;
+            
             NSString *errorString = [NSString stringWithFormat:@"Can't parse identity %@", identity];
             NSString *reasonString = [NSString stringWithFormat:@"%@ is not a valid sip uri", identity];
             NSString *suggestionString = @"Identity must be like sip:toto@sip.linphone.org";
