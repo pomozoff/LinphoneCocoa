@@ -228,6 +228,9 @@ static const char *timerSerialQueueName = "ru.akademon.linphonecocoa.iterateSeri
 #pragma mark - callbacks
 
 static void registration_state_changed(struct _LinphoneCore *lc, LinphoneProxyConfig *cfg, LinphoneRegistrationState cstate, const char *message) {
+    const char *name = dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL);
+    assert(strcmp(name, timerSerialQueueName) == 0);
+    
     [[AKDLinphoneCore sharedInstance] registrationStateChanged:cstate forLinphoneCore:lc proxyConfig:cfg message:message];
 }
 
