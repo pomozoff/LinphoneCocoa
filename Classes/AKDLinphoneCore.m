@@ -125,6 +125,25 @@ static const char *timerSerialQueueName = "ru.akademon.linphonecocoa.iterateSeri
         self.password = password;
         
         const char *server_addr = linphone_address_get_domain(from);   // extract domain address from identity
+        if (!server_addr) {
+            linphone_address_destroy(from); // release resource
+
+            linphone_core_destroy(_linphoneCore);
+            _linphoneCore = NULL;
+            
+            NSString *errorString = [NSString stringWithFormat:@"Can't get server address"];
+            NSString *reasonString = [NSString stringWithFormat:@"%@ is not a valid sip uri", identity];
+            NSString *suggestionString = @"Identity must be like sip:toto@sip.linphone.org";
+            
+            [AKDLinphoneLogger log:LCLogLevelError formatString:errorString];
+            completion([NSError errorWithDomain:linphoneCoreErrorDomain
+                                           code:LCErrorCodeInvalidIdentity
+                                       userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(errorString, nil),
+                                                  NSLocalizedFailureReasonErrorKey: NSLocalizedString(reasonString, nil),
+                                                  NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(suggestionString, nil)
+                                                  }]);
+            return;
+        }
 
         // configure proxy entries
         linphone_proxy_config_set_identity(proxy_cfg, cIdentity);      // set identity with user name and domain
