@@ -37,7 +37,6 @@
 }
 
 /*
-
  [self waitForExpectationsWithTimeout:1
  handler:^(NSError *error) {
  // handler is called on _either_ success or failure
